@@ -1,0 +1,63 @@
+#
+conda create --name seurat
+conda activate
+conda install -c conda-forge r-seurat
+conda install -c conda-forge r-knitr
+
+seurat im notebook kann nicht geladen werden durch installation von r-knitr werden manche packages verändert (removed)
+
+auch wenn in andere reihenfolge installiert fehlermeldung im notebook
+
+
+
+Folder containing installed R packages:
+
+.libPaths()
+[1] "/home/verena/anaconda3/envs/seurat/lib/R/library"
+
+wenn knit mit rstudio installiert wird dort ein ordner erstellt aber bei exportieren des env mit conda scheint es nicht auf
+
+Rendering R Markdown documents requires updated versions of the following packages: markdown, rmarkdown, tinytex.
+
+
+(seurat) verena@verena-VirtualBox:~/Desktop/gitHub/Fallstudie$ conda install -c conda-forge r-rmarkdown
+Collecting package metadata (current_repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: /home/verena/anaconda3/envs/seurat
+
+  added / updated specs:
+    - r-rmarkdown
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    pandoc-2.16.1              |       h7f98852_0        12.6 MB  conda-forge
+    r-rmarkdown-2.11           |    r40hc72bb7e_0         3.1 MB  conda-forge
+    r-tinytex-0.35             |    r40hc72bb7e_0         131 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        15.8 MB
+
+The following NEW packages will be INSTALLED:
+
+  pandoc             conda-forge/linux-64::pandoc-2.16.1-h7f98852_0
+  r-highr            conda-forge/noarch::r-highr-0.9-r40hc72bb7e_0
+  r-knitr            conda-forge/noarch::r-knitr-1.36-r40hc72bb7e_0
+  r-markdown         conda-forge/linux-64::r-markdown-1.1-r40hcfec24a_1
+  r-rmarkdown        conda-forge/noarch::r-rmarkdown-2.11-r40hc72bb7e_0
+  r-tinytex          conda-forge/noarch::r-tinytex-0.35-r40hc72bb7e_0
+  r-xfun             conda-forge/linux-64::r-xfun-0.28-r40h03ef668_0
+
+The following packages will be REMOVED:
+
+  r-spatstat.core-2.3_1-r41h03ef668_0
+  r-spatstat.geom-2.3_0-r41hcfec24a_0
+  r-spatstat.linnet-2.3_0-r41hcfec24a_0
+  r-spatstat.sparse-2.0_0-r41hcfec24a_0
+
+ Installing R Package Dependencies for R Markdown: 'highr', 'knitr', 'markdown', 'rmarkdown', 'tinytex', 'xfun'
+
