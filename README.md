@@ -19,7 +19,7 @@ conda deactivate
 
 ### Create an environment from YAML file:
  
- copy seutat.yml file in project folder
+ copy seutat.yml file in project folder \
  inside this folder:
 
 ```bash
