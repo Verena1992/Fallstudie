@@ -18,6 +18,9 @@ conda deactivate
 ## Get started
 
 ### Create an environment from YAML file:
+ 
+ copy seutat.yml file in project folder
+ inside this folder:
 
 ```bash
 conda env create --file seurat.yml
