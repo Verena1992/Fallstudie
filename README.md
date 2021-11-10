@@ -1,5 +1,8 @@
 # Fallstudie
 
+conda --version # conda 4.10.3
+
+
 an environment with seurat v4 was created:
 
 conda create --name seurat -c conda-forge -c bioconda r-seurat=4*
