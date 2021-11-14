@@ -1,0 +1,5 @@
+FROM rocker/verse:latest
+
+RUN R -e "install.packages(c('markdown', 'Seurat'))"
+
+ADD seurat_tutorial.Rmd /home/rstudio/

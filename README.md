@@ -48,3 +48,33 @@ rstudio
 
 open file: R.packages.R, install the packages \
 open seurat_tutorial.Rmd
+
+#Docker
+
+##Installation in Linux
+
+```bash
+sudo apt-get update
+```
+
+```bash
+sudo apt-get remove docker docker-engine docker.io
+```
+
+```bash
+sudo apt install docker.io
+```
+
+```bash
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+```bash
+docker --version
+```
+Docker version 20.10.7, build 20.10.7-0ubuntu5~20.04.2
+
+
+
+
