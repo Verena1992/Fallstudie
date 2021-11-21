@@ -2,8 +2,35 @@
 ## 1. Preparation
 As a preparation for the data analysis workflow, thoroughly read the given manuscripts. 
 - What are the advantages of the scRNA-Seq method compared to bulk RNA-Seq?
+bulk RNA-Seq measures "only" the average gene expression across the population of cells in a sample. It is possible to identify differences between sample conditions. 
+scRNA-Seq measures the gene expression of individual cells in a sample. It is possible to identify differences between all cell types/states. 
+
 - What are the basic steps of the scRNA-Seq analysis?
+
+- pre-processing:
+  - quality control
+  - normalization
+  - data correction and integration
+  - feature selection, dimensionality reduction and visualization
+- downstream analysis:
+  - cell level and gene-level
+    - cluster analysis
+     - clustering (cell-level)
+     - cluster annotation (gene-level)
+     - compositional analysis (cell-level)
+    - trajectory analysis
+     - trajectory inference (cell-level)
+     - gene expression dynamics (gene-level)
+     - metastable states (cell-level)
+ 
+  - gene level
+    - differential expression analysis
+    - gene set analysis
+    - gene regulatory networks
+
 - What are common problems and how are they typically solved?
+
+
 - What are the major challenges in integrating single-cell transcriptomic data across different conditions, technologies, and species? How they can be solved?
 - What problem does the workflow at hand address (the Seurat vignette linked above)?
 ## 2. Replication 
