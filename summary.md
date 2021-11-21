@@ -1,11 +1,11 @@
 # Summary
 ## 1. Preparation
 As a preparation for the data analysis workflow, thoroughly read the given manuscripts. 
-- What are the advantages of the scRNA-Seq method compared to bulk RNA-Seq?
+### What are the advantages of the scRNA-Seq method compared to bulk RNA-Seq?
 bulk RNA-Seq measures "only" the average gene expression across the population of cells in a sample. It is possible to identify differences between sample conditions. 
 scRNA-Seq measures the gene expression of individual cells in a sample. It is possible to identify differences between all cell types/states. 
 
-- What are the basic steps of the scRNA-Seq analysis?
+### What are the basic steps of the scRNA-Seq analysis?
 
 - pre-processing:
   - quality control
@@ -28,11 +28,21 @@ scRNA-Seq measures the gene expression of individual cells in a sample. It is po
     - gene set analysis
     - gene regulatory networks
 
-- What are common problems and how are they typically solved?
+### What are common problems and how are they typically solved?
 
 
-- What are the major challenges in integrating single-cell transcriptomic data across different conditions, technologies, and species? How they can be solved?
-- What problem does the workflow at hand address (the Seurat vignette linked above)?
+### What are the major challenges in integrating single-cell transcriptomic data across different conditions, technologies, and species? How they can be solved?
+  it is difficult to distinguish between changes in the proportional composition of cell types in a sample and expression changes within a given cell type.
+  
+  possible changes in cellular density (shifts in subpopulation frequency) between conditions, 
+  change in feature scale across conditions (global transcriptional shifts, differences in normalization strategies)
+  non-overlapping populations
+  
+  for identification of shared population across data sets, subpopulations must be aligned. With canonical correlation analysis, shared correlation structures across data sets are identifyed. Basic vectors from CCA are linear transformed to correct global shifts or normalization strategy. To correct changes in population density (nonlinear shift) dynamic time warping is used.
+  
+ to identify non-overlapping populations: because cca may struggle to identify rare subpopulations present in only one data set, pca may be able to separate these cells.Pca is performed on each data set independently and explained variance compared with cca.
+### What problem does the workflow at hand address (the Seurat vignette linked above)?
+
 ## 2. Replication 
 to replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
 - Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
