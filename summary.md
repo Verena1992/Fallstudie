@@ -42,7 +42,7 @@ scRNA-Seq measures the gene expression of individual cells in a sample. It is po
   
  to identify non-overlapping populations: because cca may struggle to identify rare subpopulations present in only one data set, pca may be able to separate these cells.Pca is performed on each data set independently and explained variance compared with cca.
 ### What problem does the workflow at hand address (the Seurat vignette linked above)?
-
+Clustering - Marker identification - Cluster annotation
 ## 2. Replication 
 to replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
 - Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
