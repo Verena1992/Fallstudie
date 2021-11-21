@@ -45,9 +45,22 @@ scRNA-Seq measures the gene expression of individual cells in a sample. It is po
 Clustering - Marker identification - Cluster annotation
 ## 2. Replication 
 to replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
-- Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
-- How did you set up the required environment? 
-- Explain all the steps of the vignette in your own words. 
+### Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
+### How did you set up the required environment? 
+### Explain all the steps of the vignette in your own words. 
+- Setup the Seurat Object
+- Standard pre-processing workflow
+  - QC and selecting cells for further analysis
+- Normalizing the data
+- Identification of highly variable features (feature selection)
+- Scaling the data
+- Perform linear dimensional reduction
+- Determine the ‘dimensionality’ of the dataset
+- Cluster the cells
+- Run non-linear dimensional reduction (UMAP/tSNE)
+- Finding differentially expressed features (cluster biomarkers)
+- Assigning cell type identity to clusters
+-
 ## Expanding the work
 Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work. 
 - What challenges did you ace when applying the workflow to a new data set?
