@@ -15,6 +15,14 @@ conda deactivate
 
 
 
+conda create --name seurat r-base=4.1.0
+conda activate seurat
+conda install r-ggplot2=3.3.5 r-patchwork=1.1.1 r-seuratObject=4.0.2 r-seurat=4.0.4 r-dplyr=1.0.7
+conda install r-rmarkdown r-knitr r-xfun r-htmltools
+
+
+
+
 ## Get started
 
 ### Create an environment from YAML file:
