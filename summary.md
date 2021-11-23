@@ -64,8 +64,18 @@ to replicate the tutorial, you need to reproduce all figures presented in the wo
   second line represent that from feature32709 4 molecules was detected in cell1  
   
   with the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700
+  to save memory the numerous 0 are replaced by .
+  
+  
 - Standard pre-processing workflow
   - QC and selecting cells for further analysis
+  A barcode may mistakenly tag multiple cells (doublet) or may not tag any cells (empty droplet/well). 
+  Barcodes with very few genes/number of molecules may not correspond to cells with good quality -- or quiescent
+  Barcodes with high counts my correspond to douplets -- or larger in size 
+  Barcodes with high fraction of mitochondrial counts are cells whose cytoplasmic mRNA has leaked out throught a broken membran -- or involved in respiratory processes
+  
+  
+
 - Normalizing the data
 - Identification of highly variable features (feature selection)
 - Scaling the data
