@@ -49,6 +49,21 @@ to replicate the tutorial, you need to reproduce all figures presented in the wo
 ### How did you set up the required environment? 
 ### Explain all the steps of the vignette in your own words. 
 - Setup the Seurat Object
+  the transcriptome of 2700 cells was measured with illumina,
+  matrix.mtx from the raw Data:
+  
+  %%MatrixMarket matrix coordinate real general
+  %
+32738 2700 2286884
+32709 1 4
+32707 1 1
+32706 1 10
+32704 1 1
+  
+  first line shows nfeatures = 32728, ncells=2700 and number of features measured all the cells = 2286884
+  second line represent that from feature32709 4 molecules was detected in cell1  
+  
+  with the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700
 - Standard pre-processing workflow
   - QC and selecting cells for further analysis
 - Normalizing the data
