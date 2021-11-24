@@ -47,6 +47,23 @@ Clustering - Marker identification - Cluster annotation
 to replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
 ### Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
 ### How did you set up the required environment? 
+conda --version # conda 4.10.3
+
+an environment with seurat v4 was created:
+
+conda create --name seurat
+conda activate seurat
+conda install r-base=4.1.0 
+conda install r-ggplot2=3.3.5 r-patchwork=1.1.1 r-seuratObject=4.0.2 r-seurat=4.0.4 r-dplyr=1.0.7
+conda install r-rmarkdown r-knitr r-xfun r-htmltools
+
+and the environment exported to a YAML file:
+
+ conda env export --name seurat > seurat.yml 
+ 
+ conda deactivate
+
+
 ### Explain all the steps of the vignette in your own words. 
 - Setup the Seurat Object
   the transcriptome of 2700 cells was measured with illumina,
