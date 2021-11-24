@@ -63,7 +63,7 @@ to replicate the tutorial, you need to reproduce all figures presented in the wo
   first line shows nfeatures = 32728, ncells=2700 and number of features measured all the cells = 2286884
   second line represent that from feature32709 4 molecules was detected in cell1  
   
-  with the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700
+  with the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700. 
   to save memory the numerous 0 are replaced by .
   
   
@@ -73,11 +73,16 @@ to replicate the tutorial, you need to reproduce all figures presented in the wo
   Barcodes with very few genes/number of molecules may not correspond to cells with good quality -- or quiescent
   Barcodes with high counts my correspond to douplets -- or larger in size 
   Barcodes with high fraction of mitochondrial counts are cells whose cytoplasmic mRNA has leaked out throught a broken membran -- or involved in respiratory processes
+  Before analysing the single-cell gene expression data, cell with genes over 2,500 or less than 200 are excluded. Additionally if more than 5 % of this genes are mitochondrial genes than they are also excluded. Dimension of the matrix for further analysis = 13714 x 2638
   
   
 
 - Normalizing the data
+count depths for identica cells can differ, therefore to compare cells normalization is needed. 
+Feature counts for each cell are divided by the total counts for that cell and multiplied by the scale.factor. This is then natural-log transformed
+
 - Identification of highly variable features (feature selection)
+many genes will not be informative for clustering, to reduce dimensionality of the datasets only highly variable genes are selected. From the 13714 genes the 2000 most varable genes are stored under @var.features
 - Scaling the data
 - Perform linear dimensional reduction
 - Determine the ‘dimensionality’ of the dataset
