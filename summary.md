@@ -84,13 +84,17 @@ Feature counts for each cell are divided by the total counts for that cell and m
 - Identification of highly variable features (feature selection)
 many genes will not be informative for clustering, to reduce dimensionality of the datasets only highly variable genes are selected. From the 13714 genes the 2000 most varable genes are stored under @var.features
 - Scaling the data
+To improve comparison between genes, gene counts are scaled. This scalinag has the effect that all genes are weighted equally (with this step biological information could be lost)
+
 - Perform linear dimensional reduction
+biological information in expression data can be described by far fewer dimensions than the number of genes. For that a PCA is performed with the 2000 variable features 
 - Determine the ‘dimensionality’ of the dataset
+with PCA it is possible to "summarize" a dataset. How many pc are neede to have enough information can be derminated by "elbow" heuristics, or the permutation-test-based jackstraw method.
 - Cluster the cells
 - Run non-linear dimensional reduction (UMAP/tSNE)
 - Finding differentially expressed features (cluster biomarkers)
 - Assigning cell type identity to clusters
--
+
 ## Expanding the work
 Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work. 
 - What challenges did you ace when applying the workflow to a new data set?
