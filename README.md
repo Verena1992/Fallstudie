@@ -53,9 +53,6 @@ open seurat_tutorial.Rmd
 
 inside the  project folder:
 
-```bash
-conda env create --file seurat.yml
-```
 
 ```bash
 mkdir bin
