@@ -6,10 +6,10 @@
 
 
 ### Conda
-### Create an environment from YAML file:
+**Create an environment from YAML file:**
  
- copy seutat.yml file in project folder \
- inside this folder:
+copy seutat.yml file in project folder \
+inside this folder:
 
 ```bash
 conda env create --file seurat.yml
@@ -64,6 +64,7 @@ mkdir images
 mkdir timings
 cd ..
 ```
+
 ```bash
 mkdir bin
 cd bin/
@@ -73,13 +74,15 @@ cd bin/
 ```bash
 sudo docker run --rm -d -p 8787:8787 -e PASSWORD=password -v $PWD:/home/rstudio/ seurat
 ```
-http://localhost:8787/
-Username : rstudio
-Password: password
+
+open in your webbrowser: \
+http://localhost:8787/ 
+
+Username : rstudio \
+Password: password 
 
 
 open seurat_tutorial.Rmd
-
 
 
 *stop running container*
