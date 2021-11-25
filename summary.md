@@ -49,7 +49,10 @@ to replicate the tutorial, you need to reproduce all figures presented in the wo
 ### How did you set up the required environment? 
 
 **conda**
+
+```bash
 conda --version # conda 4.10.3
+```
 
 an environment with seurat v4 was created:
 
@@ -68,6 +71,39 @@ conda env export --name seurat > seurat.yml
 ```
 **docker**
 
+*Installation*
+
+```bash
+sudo apt-get update
+```
+
+```bash
+sudo apt-get remove docker docker-engine docker.io
+```
+
+```bash
+sudo apt install docker.io
+```
+
+```bash
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+```bash
+docker --version #Docker version 20.10.7, build 20.10.7-0ubuntu5~20.04.2
+```
+
+
+*Build an image from a Dockerfile*
+
+```bash
+cd <path to Dockerfile>
+```
+
+```bash
+sudo docker build -f Dockerfile -t seurat .
+```
 
 
 ### Explain all the steps of the vignette in your own words. 
