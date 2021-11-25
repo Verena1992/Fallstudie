@@ -54,6 +54,18 @@ open seurat_tutorial.Rmd
 inside the  project folder:
 
 ```bash
+conda env create --file seurat.yml
+```
+
+```bash
+mkdir bin
+```
+
+```bash
+mv <path to seurat_tutorial.Rmd>/seurat_tutorial.Rmd ./bin/
+```
+
+```bash
 mkdir data
 cd data/
 
@@ -63,19 +75,14 @@ cd data/
 wget -c https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz -O - | tar -xz
 cd ..
 ```
+
 ```bash
 mkdir output
-cd output
+cd output/
 mkdir images 
 mkdir timings
 cd ..
 ```
-
-```bash
-mkdir bin
-cd bin/
-```
-
 
 ```bash
 sudo docker run --rm -d -p 8787:8787 -e PASSWORD=password -v $PWD:/home/rstudio/ seurat
@@ -97,14 +104,3 @@ open seurat_tutorial.Rmd
 sudo docker ps
 sudo docker stop <container name>
 ```
-
-
-
-
-
-
-
-
-
-
-
