@@ -168,8 +168,13 @@ sudo docker build -f Dockerfile -t seurat .
 32706 1 10
 32704 1 1
   
+<<<<<<< HEAD
   First line shows nfeatures = 32728, ncells=2700 and number of features measured all the cells = 2286884
   Second line represent that from feature32709 4 molecules was detected in cell1  
+=======
+  first line shows nfeatures = 32728, ncells=2700 and number of features measured in all the cells = 2286884
+  second line represent that from feature32709 4 molecules was detected in cell1  
+>>>>>>> 5fa31eb759a54c7a726d6dbea7eeffe9a8c4b7c7
   
   With the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700. 
   to save memory the numerous 0 are replaced by .
@@ -199,6 +204,14 @@ Biological information in expression data can be described by far fewer dimensio
 - Determine the ‘dimensionality’ of the dataset
 With PCA it is possible to summarize a dataset. How many pc are neede to have enough information can be derminated by "elbow" heuristics, or the permutation-test-based jackstraw method.
 - Cluster the cells
+  Euclidean distances form cells on the PC-reduced expression space are calculated. 
+  *K-Nearest Neighbour graph*
+  Based on this distance, each cell (=node) is connected to 20 other cells (with the lowest distanceses). This results for 2638 cells to 52760 connections (pbmc@graphs[["RNA_nn"]]@x). 
+  *Shared Nearest-neighbor graph (snn)*
+  Additionaly, the neighborhood overlap (Jaccard index) between every cell and its k.param nearest neighbors is calculated
+  
+  
+  
 - Run non-linear dimensional reduction (UMAP/tSNE)
 - Finding differentially expressed features (cluster biomarkers)
 - Assigning cell type identity to clusters
