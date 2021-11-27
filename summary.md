@@ -155,7 +155,7 @@ with PCA it is possible to "summarize" a dataset. How many pc are neede to have 
   *K-Nearest Neighbour graph*
   Based on this distance, each cell (=node) is connected to 20 other cells (with the lowest distanceses). This results for 2638 cells to 52760 connections (pbmc@graphs[["RNA_nn"]]@x). 
   *Shared Nearest-neighbor graph (snn)*
-  Additionaly, these connections(edges) are weighted depending on the amount of shared neighbors. 
+  Additionaly, the neighborhood overlap (Jaccard index) between every cell and its k.param nearest neighbors is calculated
   
   
   
