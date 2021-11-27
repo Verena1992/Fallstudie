@@ -46,6 +46,7 @@ Clustering - Marker identification - Cluster annotation
 ## 2. Replication 
 to replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
 ### Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
+the source of the tutorial is a script stored in a GitHub repository, so they used Version Control (Rule 4). The script reads in the raw data directly, data is not modified manualy (Rule 2). 
 ### How did you set up the required environment? 
 
 **conda**
