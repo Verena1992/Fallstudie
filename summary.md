@@ -1,5 +1,4 @@
 # Summary
-test test
 
 ## 1. Preparation
 As a preparation for the data analysis workflow, thoroughly read the given manuscripts. 
