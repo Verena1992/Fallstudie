@@ -218,9 +218,24 @@ With PCA it is possible to summarize a dataset. How many pc are neede to have en
 
 ## Expanding the work
 Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work.
-adfasdfas
+We used the Human Glioblastoma Multiforme:3'v3 Targeted, Neuroscience Panel
+Single Cell Gene Expression Dataset by Cell Ranger 4.0.0
+https://www.10xgenomics.com/resources/datasets/human-glioblastoma-multiforme-3-v-3-targeted-neuroscience-panel-3-standard-4-0-0
+Human Glioblastoma Multiforme cells from a male donor aged 57 were obtained by 10x Genomics from Discovery Life Sciences.
+The Sequencing was done by Illumina NovaSeq 6000
+filtered 1138 features across 4433 samples within 1 assay
+raw 5277 features across 4616 samples within 1 assay
+
 - What challenges did you ace when applying the workflow to a new data set?
+  - First you have to think about which biological data do you use and check the raw data preparation (like single cell sequencing or bulk sequencing)
+  - Make sure that you use the correct dataset (raw data or filtered dataset)
+  - Check which input files and fileformats are necessary for the current workflow/pipeline
+  - Make sure that you do not mix or transfer the already used dataset with the new one
+  -
+
 - What code modifications were required?
+  - You have to adapt some filters, because you analyze different number of features and samples
+  - 
 - Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?
 - Discuss all the results and interpret them. 
 
