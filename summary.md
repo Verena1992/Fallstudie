@@ -156,65 +156,71 @@ sudo docker build -f Dockerfile -t seurat .
 
 
 ### Explain all the steps of the vignette in your own words. 
-- Setup the Seurat Object
-  The transcriptome of 2700 cells was measured with Illumina NextSeq 500,
-  matrix.mtx from the raw Data:
+- **Setup the Seurat Object** \
+The transcriptome of 2700 cells was measured with Illumina NextSeq 500, 
   
-  %%MatrixMarket matrix coordinate real general
-  %
-32738 2700 2286884
-32709 1 4
-32707 1 1
-32706 1 10
-32704 1 1
+ matrix.mtx from the raw Data:
   
-<<<<<<< HEAD
-  First line shows nfeatures = 32728, ncells=2700 and number of features measured all the cells = 2286884
-  Second line represent that from feature32709 4 molecules was detected in cell1  
-=======
-  first line shows nfeatures = 32728, ncells=2700 and number of features measured in all the cells = 2286884
-  second line represent that from feature32709 4 molecules was detected in cell1  
->>>>>>> 5fa31eb759a54c7a726d6dbea7eeffe9a8c4b7c7
+> %%MatrixMarket matrix coordinate real general \
+> % \
+> 32738 2700 2286884 \
+> 32709 1 4 \
+> 32707 1 1 \
+> 32706 1 10 \
+> 32704 1 1 
   
-  With the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700. 
-  to save memory the numerous 0 are replaced by .
-  
-  
-- Standard pre-processing workflow
-  - QC and selecting cells for further analysis
-  A barcode may mistakenly tag multiple cells (doublet) or may not tag any cells (empty droplet/well). 
-  Barcodes with very few genes/number of molecules may not correspond to cells with good quality -- or quiescent
-  Barcodes with high counts my correspond to douplets -- or larger in size 
-  Barcodes with high fraction of mitochondrial counts are cells whose cytoplasmic mRNA has leaked out throught a broken membran -- or involved in respiratory processes
-  Before analysing the single-cell gene expression data, cell with genes over 2,500 or less than 200 are excluded. Additionally if more than 5 % of this genes are mitochondrial genes than they are also excluded. Dimension of the matrix for further analysis = 13714 x 2638
-  
-  
+first line shows nfeatures = 32728, ncells=2700 and number of features measured in all the cells = 2286884 \
+second line represent that from feature32709 4 molecules was detected in cell1  
 
-- Normalizing the data
-Count depths for identica cells can differ, therefore to compare cells normalization is needed. 
+With the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700. 
+To save memory the numerous 0 are replaced by .(point)
+  
+- **QC and selecting cells for further analysis**
+
+ A barcode may mistakenly tag multiple cells (doublet) or may not tag any cells (empty droplet/well). \
+ Barcodes with very few genes/number of molecules may not correspond to cells with good quality -- or quiescent \
+ Barcodes with high counts my correspond to douplets -- or larger in size \
+ Barcodes with high fraction of mitochondrial counts are cells whose cytoplasmic mRNA has leaked out throught a broken membran -- or involved in respiratory processes \
+Before analysing the single-cell gene expression data, cell with genes over 2,500 or less than 200 are excluded. Additionally if more than 5 % of this genes are mitochondrial genes than they are also excluded. Dimension of the matrix for further analysis = 13714 x 2638
+  
+- **Normalizing the data**
+
+Count depths for identical cells can differ, therefore to compare cells normalization is needed. 
 Feature counts for each cell are divided by the total counts for that cell and multiplied by the scale.factor. This is then natural-log transformed
 
-- Identification of highly variable features (feature selection)
+- **Identification of highly variable features (feature selection)**
+
 Many genes will not be informative for clustering, to reduce dimensionality of the datasets only highly variable genes are selected. From the 13714 genes the 2000 most varable genes are stored under @var.features
-- Scaling the data
+
+- **Scaling the data**
+
 To improve comparison between genes, gene counts are scaled. This scalinag has the effect that all genes are weighted equally (with this step biological information could be lost)
 
-- Perform linear dimensional reduction
+- **Perform linear dimensional reduction**
+
 Biological information in expression data can be described by far fewer dimensions than the number of genes. For that a PCA is performed with the 2000 variable features 
-- Determine the ‘dimensionality’ of the dataset
+
+- **Determine the ‘dimensionality’ of the dataset**
+
 With PCA it is possible to summarize a dataset. How many pc are neede to have enough information can be derminated by "elbow" heuristics, or the permutation-test-based jackstraw method.
-- Cluster the cells
-  Euclidean distances form cells on the PC-reduced expression space are calculated. 
-  *K-Nearest Neighbour graph*
-  Based on this distance, each cell (=node) is connected to 20 other cells (with the lowest distanceses). This results for 2638 cells to 52760 connections (pbmc@graphs[["RNA_nn"]]@x). 
-  *Shared Nearest-neighbor graph (snn)*
-  Additionaly, the neighborhood overlap (Jaccard index) between every cell and its k.param nearest neighbors is calculated. 
+
+- **Cluster the cells**
+
+Euclidean distances form cells on the PC-reduced expression space are calculated. 
+
+*K-Nearest Neighbour graph* \
+Based on this distance, each cell (=node) is connected to 20 other cells (with the lowest distanceses). This results for 2638 cells to 52760 connections (pbmc@graphs[["RNA_nn"]]@x). 
+
+*Shared Nearest-neighbor graph (snn)* \
+Additionaly, the neighborhood overlap (Jaccard index) between every cell and its k.param nearest neighbors is calculated. 
+  
+Then with the SNN graph, the modularity function is optimized to determine the clusters. For that the Louvain algorithm is used. Graphs with a high modularity score will have many connections within a community but only few pointing outwards to other communities. The Louvain algorithm detects communities as groups of cells that have more links between them than expected from the number of links the cells habe in total, or in other words: the fraction of edges that run within the community is compared to the fraction we would expect to find if we "randomly rewired" the network. 
   
   
   
-- Run non-linear dimensional reduction (UMAP/tSNE)
-- Finding differentially expressed features (cluster biomarkers)
-- Assigning cell type identity to clusters
+- **Run non-linear dimensional reduction (UMAP/tSNE)**
+- **Finding differentially expressed features (cluster biomarkers)**
+- **Assigning cell type identity to clusters**
 
 ## Expanding the work
 Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work.
@@ -226,7 +232,7 @@ The Sequencing was done by Illumina NovaSeq 6000
 filtered 1138 features across 4433 samples within 1 assay
 raw 5277 features across 4616 samples within 1 assay
 
-- What challenges did you ace when applying the workflow to a new data set?
+- What challenges did you face when applying the workflow to a new data set?
   - First you have to think about which biological data do you use and check the raw data preparation (like single cell sequencing or bulk sequencing)
   - Make sure that you use the correct dataset (raw data or filtered dataset)
   - Check which input files and fileformats are necessary for the current workflow/pipeline
