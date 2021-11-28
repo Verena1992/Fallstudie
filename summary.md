@@ -217,7 +217,8 @@ With PCA it is possible to summarize a dataset. How many pc are neede to have en
 - Assigning cell type identity to clusters
 
 ## Expanding the work
-Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work. 
+Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work.
+adfasdfas
 - What challenges did you ace when applying the workflow to a new data set?
 - What code modifications were required?
 - Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?
