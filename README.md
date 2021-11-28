@@ -33,6 +33,7 @@ cd data
 wget -c https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz -O - | tar -xz
 ##for our new dataset, do we need the raw or the filtered??
 wget -c https://cf.10xgenomics.com/samples/cell exp/4.0.0/Targeted_SC3v3_Human_Glioblastoma_Neuroscience/Targeted_SC3v3_Human_Glioblastoma_Neuroscience_raw_feature_bc_matrix.tar.gz -O - | tar -xz
+wget -c https://cf.10xgenomics.com/samples/cell-exp/4.0.0/Targeted_SC3v3_Human_Glioblastoma_Neuroscience/Targeted_SC3v3_Human_Glioblastoma_Neuroscience_filtered_feature_bc_matrix.tar.gz -O | tar -xz
 cd ..
 ```
 
