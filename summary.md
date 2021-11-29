@@ -109,25 +109,25 @@ Loaded via namespace and not attached. Here the list in the tutorial is much lon
 To ensure our results, we ran our reproduction on 2 different computers and executed the commands in the tutorial individually as well as in a complete run. No changes were apparent to us here.
 
 - Rule 1: For every result, keep track of how it was produced
- - We would have done it that way and it was obviously feasible for us
+  - We would have done it that way and it was obviously feasible for us
 - Rule 2: Avoid manual data manipulation steps
- - No manual data manipulation was carried out
+  - No manual data manipulation was carried out
 - Rule 3: Archive the exact version of all external programs used
- - RStudio matches the version as well as the other packages, but here the load via namespace point is different, the question is does that change anything? Ubuntuversion?
+  - RStudio matches the version as well as the other packages, but here the load via namespace point is different, the question is does that change anything? Ubuntuversion?
 - Rule 4: Version Control All Custom Scripts
- - According to us, exactly the same scripts were used.
+  - According to us, exactly the same scripts were used.
 - Rule 5: Record all intermediate results, when possible in standardized formats
- - How does this happen in our case?
+  - How does this happen in our case?
 - Rule 6: For analyses that include randomness, note underlying random seeds
- - A random seed is not actually evident in the tutorial
+  - A random seed is not actually evident in the tutorial
 - Rule 7: Always store raw data behind plots
- - The corresponding raw data is available in tabular format
+  - The corresponding raw data is available in tabular format
 - Rule 8: Generate hierarchical analysis output, allowing layers of increasing detail to be inspected
- - Will be generated in the output folder?
+  - Will be generated in the output folder?
 - Rule 9: Connect textual statements to underlying results
- - The tutorial is commented out in detail and linked to the necessary sources
+  - The tutorial is commented out in detail and linked to the necessary sources
 - Rule 10: Provide public access to scripts, runs and results
- - Via Github
+  - Via Github
 
 ### How did you set up the required environment? 
 **conda**
