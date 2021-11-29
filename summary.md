@@ -171,7 +171,7 @@ The transcriptome of 2700 cells was measured with Illumina NextSeq 500,
 > 32704 1 1 
   
 first line shows nfeatures = 32728, ncells=2700 and number of features measured in all the cells = 2286884 \
-second line represent that from feature32709 4 molecules was detected in cell1  
+second line represent that from feature32709 4 molecules was detected in cell1 
 
 With the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700. 
 To save memory the numerous 0 are replaced by .(point)
@@ -230,9 +230,31 @@ in the tutorial not the python package umap is used, instead the r package uwot 
 
 - **Finding differentially expressed features (cluster biomarkers)**
 
-install.packages('BiocManager')
-BiocManager::install('limma')
+To detected genes that are expressed much more/less in one cluster compared to the other cells.
+
+ident.1 = cluster to compare (if ident.2 is not defined, all other cells are used for comparison)
+idnet.2 = A second identity class for comparison. ident.1 vs ident.2 
+
+with the function FindAllMarkers(), markers for all cluster are determined. 
+
+if limma is not installed in environment, it is installed automatically with:
+
+> install.packages('BiocManager')
+> BiocManager::install('limma')
+
+to speed up this process there are 3 options:
+1. set the min.pct argument to a higher value than the default of 0.1 (excludes genes that are very infrequnetly expressed)
+2. set the logfc.threshold argument to a higher value than the default of 0.25 (excludes weaker signals)
+3. set the max.cells.per. ident argument to a number, default is Inf. (Down sample each cluster to a max number of cells)
+
+
+to calculate the impact a marker gene has on the classification the ROC test can be used.
+
+
+
 - **Assigning cell type identity to clusters**
+
+markers are used to define the cell type of the clusters. 
 
 ## Expanding the work
 Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work.
