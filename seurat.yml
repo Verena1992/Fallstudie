@@ -9,6 +9,7 @@ dependencies:
   - _r-mutex=1.0.1=anacondar_1
   - binutils_impl_linux-64=2.36.1=h193b22a_2
   - binutils_linux-64=2.36=hf3e587d_1
+  - bioconductor-limma=3.48.0=r41hd029910_0
   - bwidget=1.9.14=ha770c72_1
   - bzip2=1.0.8=h7f98852_4
   - c-ares=1.18.1=h7f98852_0

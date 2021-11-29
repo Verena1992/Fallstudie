@@ -111,6 +111,7 @@ conda activate seurat
 conda install r-base=4.1.0 
 conda install r-ggplot2=3.3.5 r-patchwork=1.1.1 r-seuratObject=4.0.2 r-seurat=4.0.4 r-dplyr=1.0.7
 conda install r-rmarkdown r-knitr r-xfun r-htmltools
+conda install -c bioconda bioconductor-limma=3.48.0
 ```
 
 and the environment exported to a YAML file:
@@ -219,7 +220,18 @@ Then with the SNN graph, the modularity function is optimized to determine the c
   
   
 - **Run non-linear dimensional reduction (UMAP/tSNE)**
+
+cells within the same cluster should group together 
+
+in the tutorial not the python package umap is used, instead the r package uwot is used. Installation of python package is not needed.
+
+> Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric /
+> To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+
 - **Finding differentially expressed features (cluster biomarkers)**
+
+install.packages('BiocManager')
+BiocManager::install('limma')
 - **Assigning cell type identity to clusters**
 
 ## Expanding the work
