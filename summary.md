@@ -291,11 +291,11 @@ focus on genes that matter most
 
 - **What code modifications were required?**
   - name from the read in data
-- lower number of min.features for cells beeing included in seurat Object 
+  - lower number of min.features for cells beeing included in seurat Object 
   - You have to adapt some filters, because you analyze different number of features and samples
   - increase number of used dimenstion
   - because high heterogenity is expected also resolution parameter is set to a higher number
-  - 
+  - change the variable name pbmc, because data is from different cell type. To make it more robust for different datasets a neutral name (scSEQ) is used. 
 
  - 
 - **Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?**
