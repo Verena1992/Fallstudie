@@ -94,7 +94,11 @@ Clustering - Marker identification - Cluster annotation
 To replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
 
 ### Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
-The source of the tutorial is a script stored in a GitHub repository, so they used Version Control (Rule 4). The script reads in the raw data directly, data is not modified manualy (Rule 2). 
+The source of the tutorial is a script stored in a GitHub repository, so they used Version Control (Rule 4). 
+
+The link to the raw data, downloads data within 
+
+The script reads in the raw data directly, data is not modified manualy (Rule 2). 
 
 ### How did you set up the required environment? 
 **conda**
@@ -266,16 +270,33 @@ The Sequencing was done by Illumina NovaSeq 6000
 filtered 1138 features across 4433 samples within 1 assay
 raw 5277 features across 4616 samples within 1 assay
 
-- What challenges did you face when applying the workflow to a new data set?
+- **What challenges did you face when applying the workflow to a new data set?**
   - First you have to think about which biological data do you use and check the raw data preparation (like single cell sequencing or bulk sequencing)
+
   - Make sure that you use the correct dataset (raw data or filtered dataset)
+    The cellranger pipeline outputs two types of feature-barcode matrices:
+    Unfiltered feature-barcode matrix and Filtered feature-barcode matrix.
+    The filtered matrix contains only detected cellular barcodes. For Targeted Gene Expression samples, non-targeted genes are removed from the filtered matrix).
+	Because it was shown that using targeted gene expression with the Human Neuroscience Panel (Number of Genes Targeted = 1186) enables comprehensive and efficient characterization of the human brain and nervous system, we decided to work with targeted data. 
+	All analysis for targeted data is performed with the filtered matrix (with removed non-targeted genes).
   - Check which input files and fileformats are necessary for the current workflow/pipeline
   - Make sure that you do not mix or transfer the already used dataset with the new one
-  -
+  - with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. 
+- because the target approach already tries to focus on genes that matter most, feature number is low compared to the tutorial. The step feature selection is may not needed. 
+- it seems that the dimensionality is higher
 
-- What code modifications were required?
+focus on genes that matter most
+
+- **What code modifications were required?**
+  - name from the read in data
   - You have to adapt some filters, because you analyze different number of features and samples
+  - increase number of used dimenstion
+  - because high heterogenity is expected also resolution parameter is set to a higher number
   - 
-- Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?
-- Discuss all the results and interpret them. 
+
+ - 
+- **Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?**
+- **Discuss all the results and interpret them.**
+
+
 
