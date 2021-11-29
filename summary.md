@@ -281,14 +281,17 @@ raw 5277 features across 4616 samples within 1 assay
 	All analysis for targeted data is performed with the filtered matrix (with removed non-targeted genes).
   - Check which input files and fileformats are necessary for the current workflow/pipeline
   - Make sure that you do not mix or transfer the already used dataset with the new one
+- finding a suited parameter (min.cells, min.features) for creating Seurat Object as measured features of the cell is lower than in the tutorial
   - with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. 
 - because the target approach already tries to focus on genes that matter most, feature number is low compared to the tutorial. The step feature selection is may not needed. 
 - it seems that the dimensionality is higher
+
 
 focus on genes that matter most
 
 - **What code modifications were required?**
   - name from the read in data
+- lower number of min.features for cells beeing included in seurat Object 
   - You have to adapt some filters, because you analyze different number of features and samples
   - increase number of used dimenstion
   - because high heterogenity is expected also resolution parameter is set to a higher number
