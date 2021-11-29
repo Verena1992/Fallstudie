@@ -14,6 +14,11 @@ inside this folder:
 ```bash
 conda env create --file seurat.yml
 ```
+when you have troubles, it could be helpful to delete the environment and create again like in step1
+
+```bash
+conda env remove -n seurat
+```
 
 ```bash
 mkdir bin
