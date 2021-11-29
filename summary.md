@@ -95,10 +95,39 @@ To replicate the tutorial, you need to reproduce all figures presented in the wo
 
 ### Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
 The source of the tutorial is a script stored in a GitHub repository, so they used Version Control (Rule 4). 
-
 The link to the raw data, downloads data within 
+The script reads in the raw data directly, data is not modified manualy (Rule 2).
 
-The script reads in the raw data directly, data is not modified manualy (Rule 2). 
+In general, the tutorial and the results seems reproducible, but in the jackstraw plot we get different numerical values for the PC7, PC9 and PC12. Here, however, the question is whether this is relevant at all, since no significant changes are involved.
+The course of the line do not change and they are all above the dashed line.
+Original tutorial: PC7 3.38e-23, PC9 5.22e-12, PC12 5.92e-05
+Reproduced tutorial: PC7 4.05e-24, PC9 8.8e-12, PC12 0.000101
+When displaying/arranging the heat maps of the 15 main components. We also noticed that the arrangement of the features/genes in the tutorial does not correspond to the reproduced one. See PC 15, XCL2 last feature according to the tutorial. In the reproduced tutorial APOBEC3H is the last feature.
+What we also noticed is that the output of the pvalues is different, although we actually use the exact code from the tutorial. It is possible that a presetting in RStudio has to be made here, which was not obvious to us.
+We also noticed that the Ubuntu version is different from ours. In the tutorial, 20.04.2 LTS is used. I have used 20.04.1 LTS. VERENA, The question is whether you have 20.04.2 LTS, because then we can take that out.
+Loaded via namespace and not attached. Here the list in the tutorial is much longer than in the reproduced version.
+To ensure our results, we ran our reproduction on 2 different computers and executed the commands in the tutorial individually as well as in a complete run. No changes were apparent to us here.
+
+- Rule 1: For every result, keep track of how it was produced
+ - We would have done it that way and it was obviously feasible for us
+- Rule 2: Avoid manual data manipulation steps
+ - No manual data manipulation was carried out
+- Rule 3: Archive the exact version of all external programs used
+ - RStudio matches the version as well as the other packages, but here the load via namespace point is different, the question is does that change anything? Ubuntuversion?
+- Rule 4: Version Control All Custom Scripts
+ - According to us, exactly the same scripts were used.
+- Rule 5: Record all intermediate results, when possible in standardized formats
+ - How does this happen in our case?
+- Rule 6: For analyses that include randomness, note underlying random seeds
+ - A random seed is not actually evident in the tutorial
+- Rule 7: Always store raw data behind plots
+ - The corresponding raw data is available in tabular format
+- Rule 8: Generate hierarchical analysis output, allowing layers of increasing detail to be inspected
+ - Will be generated in the output folder?
+- Rule 9: Connect textual statements to underlying results
+ - The tutorial is commented out in detail and linked to the necessary sources
+- Rule 10: Provide public access to scripts, runs and results
+ - Via Github
 
 ### How did you set up the required environment? 
 **conda**
