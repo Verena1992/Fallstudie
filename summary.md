@@ -327,7 +327,10 @@ raw 5277 features across 4616 samples within 1 assay
   - The QC violin plots with the mitochondrial RNA look the most different.
 
 - **Discuss all the results and interpret them.**
-  - Basically, it is not so easy to interpret the available data because we have not done it to this extent before. Above all, there is the question of clinical relevance.
+  - Basically, it is quite tricky to interpret the available data because more biological background would be helpful.
+  - QC and selecting cells for further analysis:
+    - As mentioned in the section above, with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. The distribution of counts and features can be seen in the violin plots. The feature plot shows an even distibution. A clustered occurrence is visible from 200 to 400. The count plot shows a huge clustered occurence at the bottom. In the FeatureScatter feature-feature relationships are visualized. The left plot has no relevance for us because percent.mt is 0. In the right plot, nFeature_RNA is plotted against nCount_RNA. In our data, a wider scatter and steeper increase can be observed compared to the tutorial.
+  
   - At first glance, the up- and down-regulated genes in the specific cell variants can be viewed.
 
 
