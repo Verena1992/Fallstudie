@@ -75,16 +75,16 @@ PCA in general for summarization or diffusion maps for trajectory inference summ
 ### What are the major challenges in integrating single-cell transcriptomic data across different conditions, technologies, and species? How they can be solved?
 It is difficult to distinguish between changes in the proportional composition of cell types in a sample and expression changes within a given cell type.
   
-  Possible changes in cellular density (shifts in subpopulation frequency) between conditions, 
-  change in feature scale across conditions (global transcriptional shifts, differences in normalization strategies)
-  non-overlapping populations
+ - Possible changes in cellular density (shifts in subpopulation frequency) between conditions 
+ - Change in feature scale across conditions (global transcriptional shifts, differences in normalization strategies)
+ - Non-overlapping populations
   
-  For identification of shared population across data sets, subpopulations must be aligned. With canonical correlation analysis, shared correlation structures across data sets are identifyed. Basic vectors from CCA are linear transformed to correct global shifts or normalization strategy. To correct changes in population density (nonlinear shift) dynamic time warping is used.
+For identification of shared population across data sets, subpopulations must be aligned. With canonical correlation analysis, shared correlation structures across data sets are identifyed. Basic vectors from CCA are linear transformed to correct global shifts or normalization strategy. To correct changes in population density (nonlinear shift) dynamic time warping is used.
   
-  To identify non-overlapping populations: Because CCA may struggle to identify rare subpopulations present in only one data set, PCA  may be able to separate these cells. PCA is performed on each data set independently and explained variance compared with CCA.
+To identify non-overlapping populations: Because CCA may struggle to identify rare subpopulations present in only one data set, PCA  may be able to separate these cells. PCA is performed on each data set independently and explained variance compared with CCA.
 
 ### What problem does the workflow at hand address (the Seurat vignette linked above)?
-Clustering - Marker identification - Cluster annotation
+Clustering --> Marker identification --> Cluster annotation
 
 ## 2. Replication 
 To replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
