@@ -308,7 +308,6 @@ raw 5277 features across 4616 samples within 1 assay
   - Feature number is low compared to the tutorial, but it seems the dimensionality is higher.
   - Assigning cell type identity to clusters not possible without having canonical markers
 
-
 - **What code modifications were required?**
   - Name from the read in data
   - Lower number of min.features for cells beeing included in seurat Object 
@@ -319,8 +318,8 @@ raw 5277 features across 4616 samples within 1 assay
   - Change the variable name pbmc, because data is from different cell type. To make it more robust/adaptable for different datasets a neutral name (scSEQ) is used. 
 
 - **Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?**
-  - The results cannot be compared in the biological context because the raw data are completely different and, above all, the cells are completely different. Tumour cells are basically very heterogeneous and in the case of glioblastoma cells this applies even more extensively.
- - because a panel was used, in the matrix also features (n=20) were present without beeing detected in a cell. 
+  - The results are not comparable through biological context. The existing cells are completely different. Tumour cells are basically very heterogeneous and in the case of glioblastoma cells this applies even more extensively.
+  - Because a panel was used, in the matrix also features (n=20) were present without beeing detected in a cell. 
   - The many black areas in the heat maps are not yet clear to me???? low = "magenta", high = "yellow", mid = "black" 
   - In our data set, there are also apparently more principal components beforehand due to the heterogeneity of the cells, and the individual PCs are not so easily separable.
   - Whereby the "main" elbow again at 8 - 9 PCs
