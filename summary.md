@@ -10,7 +10,6 @@ Sequencing of individual cells simply provides the opportunity to view gene expr
 It is possible to identify differences between all cell types/states. 
 
 ### What are the basic steps of the scRNA-Seq analysis?
-###Should we shortly mention the steps of the experimental workflow?
 - Experimental workflow before analysis:
   - Single-cell dissociation
   - Single-cell isolation
@@ -26,13 +25,13 @@ It is possible to identify differences between all cell types/states.
 - Downstream analysis:
   - Cell-level and gene-level
     - Cluster analysis
-     - Clustering (cell-level)
-     - Cluster annotation (gene-level)
-     - Compositional analysis (cell-level)
+      - Clustering (cell-level)
+      - Cluster annotation (gene-level)
+      - Compositional analysis (cell-level)
     - Trajectory analysis
-     - Trajectory inference (cell-level)
-     - Gene expression dynamics (gene-level)
-     - Metastable states (cell-level)
+      - Trajectory inference (cell-level)
+      - Gene expression dynamics (gene-level)
+      - Metastable states (cell-level)
  
   - Gene-level
     - Differential expression analysis
@@ -40,11 +39,10 @@ It is possible to identify differences between all cell types/states.
     - Gene regulatory networks
 
 ### What are common problems and how are they typically solved?
-In general, the unification and standardisation of a workflow. The choice of the programming language is also often a choice between analysis tools.
+First, the unification and standardisation of an analysis workflow. The choice of the programming language is often a choice between analysis tools.
 There are now very popular platforms such as Seurat, Scater or Scanpy which offer integrated working environments with large toolboxes.
-In experimental workflow there are, of course, commonly known "problems" such as multiple cells beeing captured together, so doublets or multiplets can arise or that no cells are captured at all.
-We mention this because it can lead to misinterpretation in the course of the data analysis. For example, unexpected high counts and a huge number of detected genes may represent doublets.
-It is always an advantage to be well informed about the experimental approach, which often facilitates data interpretation.
+In experimental workflow there are commonly known "problems" such as multiple cells beeing captured together. So doublets or multiplets can arise or no cells are captured at all. This could lead to misinterpretation in the course of the data analysis. For example, unexpected high counts and a huge amount of detected genes may represent doublets.
+It is benefical to be well informed about the experimental approach/raw data, which often facilitates data interpretation.
 
 Quality control:
  - 3 QC covariates:
