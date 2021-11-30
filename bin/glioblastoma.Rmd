@@ -74,7 +74,7 @@ resolution = 0.9 #higher values  > more cluster
 library(dplyr)
 library(Seurat)
 library(patchwork)
-# Load the PBMC dataset
+# Load the glioblastoma multiforme dataset
 scSEQ.data <- Read10X(data.dir = "../data/filtered_feature_bc_matrix/")
 # Initialize the Seurat object with the raw (non-normalized data).
 scSEQ <- CreateSeuratObject(counts = scSEQ.data, project = projectname, min.cells = min_cells, min.features = min.features)
@@ -158,7 +158,7 @@ Next, we apply a linear transformation ('scaling') that is a standard pre-proces
 * Shifts the expression of each gene, so that the mean expression across cells is 0
 * Scales the expression of each gene, so that the variance across cells is 1
     + This step gives equal weight in downstream analyses, so that highly-expressed genes do not dominate
-* The results of this are stored in `pbmc[["RNA"]]@scale.data`
+* The results of this are stored in `scSEQ[["RNA"]]@scale.data`
 ```{r regress, fig.height=7, fig.width=11, results='hide'}
 all.genes <- rownames(scSEQ)
 scSEQ <- ScaleData(scSEQ, features = all.genes)
