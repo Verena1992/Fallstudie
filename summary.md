@@ -319,8 +319,7 @@ raw 5277 features across 4616 samples within 1 assay
 
 - **Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?**
   - The results are not comparable through biological context. The existing cells are completely different. Tumour cells are basically very heterogeneous and in the case of glioblastoma cells this applies even more extensively.
-  - Because a panel was used, in the matrix also features (n=20) were present without beeing detected in a cell. 
-  - The many black areas in the heat maps are not yet clear to me???? low = "magenta", high = "yellow", mid = "black" 
+  - Because a panel was used, in the matrix also features (n=20) were present without beeing detected in a cell.  
   - In our data set, there are also apparently more principal components beforehand due to the heterogeneity of the cells, and the individual PCs are not so easily separable.
   - Whereby the "main" elbow again at 8 - 9 PCs
   - But if you compare the plots to the basic tutorial, there are similarities.
@@ -330,7 +329,10 @@ raw 5277 features across 4616 samples within 1 assay
   - Basically, it is quite tricky to interpret the available data because more biological background would be helpful.
   - QC and selecting cells for further analysis:
     - As mentioned in the section above, with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. The distribution of counts and features can be seen in the violin plots. The feature plot shows an even distibution. A clustered occurrence is visible from 200 to 400. The count plot shows a huge clustered occurence at the bottom. In the FeatureScatter feature-feature relationships are visualized. The left plot has no relevance for us because percent.mt is 0. In the right plot, nFeature_RNA is plotted against nCount_RNA. In our data, a wider scatter and steeper increase can be observed compared to the tutorial.
-  
+  - Identification of highly variable features (feature selection) - 10 most highly variable genes were identified:
+    -  Normalized data is used. Standardized Variance is plotted against average expression. We have a variable count of 1166. The 10 highly variable genes are: COL4A1, APOD, MT1H, PLA2G2A, CLDN5, COL4A2, MMP9, EGFL7, CXCL10, ESAM.
+  - Perform linear dimensional reduction
+    - Some ways are provided to visualize cells and features that define the PCA. When PC_1 is plotted against PC_2, at first glance there 3 main clusters. Afterwards the PCs/Dimensions were visualized with heatmaps. You can see the different gene expressions, magenta = low gene expression , black = no relevant expression, yellow = high gene expression. Compared to the tutorial results you can obsere, our dataset has also in PC13 to PC15 a variation between high and low gene expressesion, whereas in the tutorial there only low gene expression in these PCs. Which in turn confirms that in our case we are dealing with a very heterogeneous data set.
   - At first glance, the up- and down-regulated genes in the specific cell variants can be viewed.
 
 
