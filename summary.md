@@ -48,7 +48,7 @@ Quality control - 3 QC covariates:
    - Number of counts per barcode (count depth)
    - Number of genes per barcode
    - Fraction of counts from mitochondrial genes per barcode
-   - 
+   
 Considering one of this QC covariates alone could lead to misinterpretation of cellular signals and setting the "wrong" threshold.
 Therefore, these parameters should always be considered together and thresholds should be set as permissive as possible to avoid filtering out viable cell populations.
 Future approach - Filtering models that account for multivariate QC dependencies provide more sensitive options.
