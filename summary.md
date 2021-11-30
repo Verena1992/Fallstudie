@@ -282,8 +282,10 @@ Markers are used to define the cell type of the clusters.
 
 ## Expanding the work
 Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work.
+
 We used the Human Glioblastoma Multiforme:3'v3 Targeted, Neuroscience Panel
 Single Cell Gene Expression Dataset by Cell Ranger 4.0.0
+Provided by 10xGenomics:
 https://www.10xgenomics.com/resources/datasets/human-glioblastoma-multiforme-3-v-3-targeted-neuroscience-panel-3-standard-4-0-0
 Human Glioblastoma Multiforme cells from a male donor aged 57 were obtained by 10x Genomics from Discovery Life Sciences.
 The Sequencing was done by Illumina NovaSeq 6000
@@ -291,34 +293,30 @@ filtered 1138 features across 4433 samples within 1 assay
 raw 5277 features across 4616 samples within 1 assay
 
 - **What challenges did you face when applying the workflow to a new data set?**
-  - First you have to think about which biological data do you use and check the raw data preparation (like single cell sequencing or bulk sequencing)
 
+  - At the beginnig it is useful to obtain information of the examined biological samples and check the raw data preparation (like single cell sequencing or bulk sequencing)
   - Make sure that you use the correct dataset (raw data or filtered dataset)
     The cellranger pipeline outputs two types of feature-barcode matrices:
     Unfiltered feature-barcode matrix and Filtered feature-barcode matrix.
-    The filtered matrix contains only detected cellular barcodes. For Targeted Gene Expression samples, non-targeted genes are removed from the filtered matrix).
-	Because it was shown that using targeted gene expression with the Human Neuroscience Panel (Number of Genes Targeted = 1186) enables comprehensive and efficient characterization of the human brain and nervous system, we decided to work with targeted data. 
-	All analysis for targeted data is performed with the filtered matrix (with removed non-targeted genes).
+    The filtered matrix contains only detected cellular barcodes. For Targeted Gene Expression samples, non-targeted genes are removed from the filtered matrix.
+    It was shown that using targeted gene expression with the Human Neuroscience Panel (Number of Genes Targeted = 1186) enables comprehensive and efficient characterization of the human brain and nervous system. We decided to work with targeted data. All analysis for targeted data is performed with filtered matrix (with removed non-targeted genes).
   - Check which input files and fileformats are necessary for the current workflow/pipeline
   - Make sure that you do not mix or transfer the already used dataset with the new one
-- finding a suited parameter (min.cells, min.features) for creating Seurat Object as measured features of the cell is lower than in the tutorial
-  - with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. 
-- because the target approach already tries to focus on genes that matter most, feature number is low compared to the tutorial. The step feature selection is may not needed. 
-- it seems that the dimensionality is higher
-- Assigning cell type identity to clusters not possible without having canonical markers
-
-
-
+  - Finding a suited parameter (min.cells, min.features) for creating Seurat Object as measured features of the cell is lower than in the tutorial.
+  - With the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. 
+  - The step feature selection is may not needed, because the target approach already tries to focus on genes that matter most.
+  - Feature number is low compared to the tutorial, but it seems the dimensionality is higher.
+  - Assigning cell type identity to clusters not possible without having canonical markers
 
 
 - **What code modifications were required?**
-  - name from the read in data
-  - lower number of min.features for cells beeing included in seurat Object 
+  - Name from the read in data
+  - Lower number of min.features for cells beeing included in seurat Object 
   - You have to adapt some filters, because you analyze different number of features and samples
-  - increase number of used dimenstion
-  - skip feature selection step
-  - because high heterogenity is expected also resolution parameter is set to a higher number
-  - change the variable name pbmc, because data is from different cell type. To make it more robust for different datasets a neutral name (scSEQ) is used. 
+  - Increase number of used dimension
+  - Skip feature selection step
+  - Because high heterogenity (due to biological context) is expected also resolution parameter is set to a higher count
+  - Change the variable name pbmc, because data is from different cell type. To make it more robust/adaptable for different datasets a neutral name (scSEQ) is used. 
 
 - **Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?**
   - The results cannot be compared in the biological context because the raw data are completely different and, above all, the cells are completely different. Tumour cells are basically very heterogeneous and in the case of glioblastoma cells this applies even more extensively.
