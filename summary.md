@@ -44,24 +44,22 @@ There are now very popular platforms such as Seurat, Scater or Scanpy which offe
 In experimental workflow there are commonly known "problems" such as multiple cells beeing captured together. So doublets or multiplets can arise or no cells are captured at all. This could lead to misinterpretation in the course of the data analysis. For example, unexpected high counts and a huge amount of detected genes may represent doublets.
 It is benefical to be well informed about the experimental approach/raw data, which often facilitates data interpretation.
 
-Quality control:
- - 3 QC covariates:
+Quality control - 3 QC covariates:
    - Number of counts per barcode (count depth)
    - Number of genes per barcode
    - Fraction of counts from mitochondrial genes per barcode
-Considering one of this QC covariates alone/on its own could lead to misinterpretation of cellular signals and setting the "wrong" treshold.
+   - 
+Considering one of this QC covariates alone could lead to misinterpretation of cellular signals and setting the "wrong" threshold.
 Therefore, these parameters should always be considered together and thresholds should be set as permissive as possible to avoid filtering out viable cell populations.
-Future approach - Filtering models that account for multivariate QC dependencies provide more sensitive options in future.
-What should always be taken into account is the heterogeneity in biological samples.
-So heterogeneous mixtures of cell types could misinterpreted as low-quality outlier cells.
-Summarized, it is relevant to set the "right" threshold and it could be helpful to the effects of quality control decissions several times.
-One guidline is to use the minimum cell cluster size that is of interest.
+Future approach - Filtering models that account for multivariate QC dependencies provide more sensitive options.
+The heterogeneity of biological samples should always be taken into account in data analysis.
+One example - Heterogeneous mixtures of cell types could misinterpreted as low-quality outlier cells.
+Summarized, it is relevant to set the threshold carefully. It could be helpful to check the effects of quality control decissions several times.
+One guideline is to use the minimum cell cluster size that is of interest.
 Also the threshold should scale with the number of cells in the dataset and the intended downstream analysis.
 
 When comparing gene expression between cells based on count data, a difference may have arisen due to sampling effects.
-Therefore normalization is performed. By scaling the count data and thus determining correkt relative gene expression abundances between cells.
-The most used is count depth scaling, also referred to as "counts per million" or "CPM normalization".
-Normalized data should be log(x+1)-transformed for use with downstream analysis methods that assume data are normally distributed.
+Therefore normalization is performed. By scaling the count data and thus determining correct relative gene expression abundances between cells.
 
 Batch correction:
 A recommendation performing batch correction is using ComBat when cell type and state compositions between batches are consistent.
@@ -71,7 +69,7 @@ Data integration and batch correction should be performed by different methods.
 Visualization and summarization:
 Dimensionality reduction methods should be considered separately for visualization and summarization.
 For exploratory visualization UMAP is a recommondation.
-PCA in general for summarization  or diffusion maps for trajectory inference summarization.
+PCA in general for summarization or diffusion maps for trajectory inference summarization.
 
 
 ### What are the major challenges in integrating single-cell transcriptomic data across different conditions, technologies, and species? How they can be solved?
