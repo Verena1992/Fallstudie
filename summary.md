@@ -91,18 +91,15 @@ To replicate the tutorial, you need to reproduce all figures presented in the wo
 
 ### Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
 
-
-
-In general, the tutorial and the results seems reproducible, but in the jackstraw plot we get different numerical values for the PC7, PC9 and PC12. Here, however, the question is whether this is relevant at all, since no significant changes are involved.
-The course of the line do not change and they are all above the dashed line.
+In general, the tutorial and the results seems reproducible, but in the jackstraw plot we get different numerical values for PC7, PC9 and PC12.
 Original tutorial: PC7 3.38e-23, PC9 5.22e-12, PC12 5.92e-05
 Reproduced tutorial: PC7 4.05e-24, PC9 8.8e-12, PC12 0.000101
-When displaying/arranging the heat maps of the 15 main components. We also noticed that the arrangement of the features/genes in the tutorial does not correspond to the reproduced one. See PC 15, XCL2 last feature according to the tutorial. In the reproduced tutorial APOBEC3H is the last feature.
+However no significant changes are involved. The course of the line do not change obviously and they are all above the dashed line.
+When displaying/arranging the heat maps of the 15 main components. We also noticed that the arrangement of the features/genes in the tutorial does not correspond to the reproduced one. For example PC 15, XCL2 last feature according to the tutorial. In the reproduced tutorial APOBEC3H is the last feature.
 What we also noticed is that the output of the pvalues is different, although we actually use the exact code from the tutorial. 
-In the seurat repository we found a discussion with exactly this issue [seurat/issue1789](https://github.com/satijalab/seurat/issues/1789), mentioned that "It is possible for these values to change slightly, based on the exact computing platform." And that means it is not 100 % reproducibel. 
+In the seurat repository we found a discussion with exactly this issue [seurat/issue1789](https://github.com/satijalab/seurat/issues/1789), mentioned that "It is possible for these values to change slightly, based on the exact computing platform." And that means it is not 100 % reproducible. 
 
 As well in the original script there is a little bug, for the chunk calculating the object size, the chunk is made with ''''r instad of '''r resulting in a error message when trying to convert into html. 
-
 
 To ensure our results, we ran our reproduction on 2 different computers and executed the commands in the tutorial individually as well as in a complete run. No changes were apparent to us here.
 
@@ -111,18 +108,17 @@ To ensure our results, we ran our reproduction on 2 different computers and exec
 - Rule 2: Avoid manual data manipulation steps
   - No manual data manipulation was carried out, script reads in the raw data directly
 - Rule 3: Archive the exact version of all external programs used
- with Session Info the exact names and versions of the main programs are given, and they also provide a docker images. Instructions on how to set up required environments or how to use docker is missing. 
-used IDE is also mentioned. 
+  - With Session Info the exact names and versions of the main programs are given, and they also provide a docker image. Instructions on how to set up required environments or how to use docker is missing. Used IDE is also mentioned. 
 - Rule 4: Version Control All Custom Scripts
   - The source of the tutorial is a script stored in a GitHub repository, so they used Version Control
 - Rule 5: Record all intermediate results, when possible in standardized formats
-  - at the end "saveRDS(pbmc, file = "../data/pbmc3k_final.rds")" the seurat object is stored. But the object serves as a container with different slot for data and analysis, that makes it possible to see for example scaled and not scaled data without overwriting. 
+  - At the end "saveRDS(pbmc, file = "../data/pbmc3k_final.rds")" the seurat object is stored. But the object serves as a container with different slot for data and analysis, that makes it possible to see for example scaled and not scaled data without overwritting. 
 - Rule 6: For analyses that include randomness, note underlying random seeds
-  - for quiet a lot of functions, random.seeds are set, but newer mentioned directly. For the function JackStraw(pbmc, num.replicate = 100) randomness is mentioned but, repeated execution doesn not change the result. In the source code we found that also here a random.seed is set. 
+  - For quiet a lot of functions, random.seeds are set, but never mentioned directly. For the function JackStraw(pbmc, num.replicate = 100) randomness is mentioned but, repeated execution does not change the result. In the source code we found that also here a random.seed is set. 
 - Rule 7: Always store raw data behind plots
   - The corresponding data is stored
 - Rule 8: Generate hierarchical analysis output, allowing layers of increasing detail to be inspected
-  - we found that the seuratObject, is a format, that allows to inspect different layers of the result. 
+  - We found that the seuratObject, is a format, that allows to inspect different layers of the result. 
 - Rule 9: Connect textual statements to underlying results
   - The tutorial is commented out in detail and linked to the necessary sources
 - Rule 10: Provide public access to scripts, runs and results
@@ -202,10 +198,10 @@ The transcriptome of 2700 cells was measured with Illumina NextSeq 500,
 > 32706 1 10 \
 > 32704 1 1 
   
-first line shows nfeatures = 32728, ncells=2700 and number of features measured in all the cells = 2286884 \
-second line represent that from feature32709 4 molecules was detected in cell1 
+First line shows nfeatures = 32728, ncells=2700 and number of features measured in all the cells = 2286884 \
+Second line represent that from feature32709 4 molecules was detected in cell1 
 
-With the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function this matrix in than stored in a Seurat object, in a Seurat object it is possible to add to the matrix also results of analysis. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700. 
+With the Read10X() function it is possible to transform the raw data into a matrix (ncells = ncolms, ngenes = nrow), here we get 2700 columns and 32738 rows (88392600 elements). With  CreateSeuratObject() function the matrix in stored in a Seurat object, here it is possible to add results of the analysis to the matrix. Only a subset of the original matrix is stored, features detected in less than 3 cells and cells with less than 200 features are excluded. The dimension of the new matrix = 13714 x 2700. 
 To save memory the numerous 0 are replaced by .(point)
   
 - **QC and selecting cells for further analysis**
