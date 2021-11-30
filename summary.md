@@ -94,36 +94,39 @@ Clustering - Marker identification - Cluster annotation
 To replicate the tutorial, you need to reproduce all figures presented in the workflow. Address at least the following questions:
 
 ### Is a replication of the tutorial possible? Compare the tutorial against the rules/recommendations from Sandve et al. 2013.; comment on the clarity of the description and documentation.
-The source of the tutorial is a script stored in a GitHub repository, so they used Version Control (Rule 4). 
-The link to the raw data, downloads data within 
-The script reads in the raw data directly, data is not modified manualy (Rule 2).
+
+
 
 In general, the tutorial and the results seems reproducible, but in the jackstraw plot we get different numerical values for the PC7, PC9 and PC12. Here, however, the question is whether this is relevant at all, since no significant changes are involved.
 The course of the line do not change and they are all above the dashed line.
 Original tutorial: PC7 3.38e-23, PC9 5.22e-12, PC12 5.92e-05
 Reproduced tutorial: PC7 4.05e-24, PC9 8.8e-12, PC12 0.000101
 When displaying/arranging the heat maps of the 15 main components. We also noticed that the arrangement of the features/genes in the tutorial does not correspond to the reproduced one. See PC 15, XCL2 last feature according to the tutorial. In the reproduced tutorial APOBEC3H is the last feature.
-What we also noticed is that the output of the pvalues is different, although we actually use the exact code from the tutorial. It is possible that a presetting in RStudio has to be made here, which was not obvious to us.
-We also noticed that the Ubuntu version is different from ours. In the tutorial, 20.04.2 LTS is used. I have used 20.04.1 LTS. VERENA, The question is whether you have 20.04.2 LTS, because then we can take that out.
-Loaded via namespace and not attached. Here the list in the tutorial is much longer than in the reproduced version.
+What we also noticed is that the output of the pvalues is different, although we actually use the exact code from the tutorial. 
+In the seurat repository we found a discussion with exactly this issue [seurat/issue1789](https://github.com/satijalab/seurat/issues/1789), mentioned that "It is possible for these values to change slightly, based on the exact computing platform." And that means it is not 100 % reproducibel. 
+
+As well in the original script there is a little bug, for the chunk calculating the object size, the chunk is made with ''''r instad of '''r resulting in a error message when trying to convert into html. 
+
+
 To ensure our results, we ran our reproduction on 2 different computers and executed the commands in the tutorial individually as well as in a complete run. No changes were apparent to us here.
 
 - Rule 1: For every result, keep track of how it was produced
   - We would have done it that way and it was obviously feasible for us
 - Rule 2: Avoid manual data manipulation steps
-  - No manual data manipulation was carried out
+  - No manual data manipulation was carried out, script reads in the raw data directly
 - Rule 3: Archive the exact version of all external programs used
-  - RStudio matches the version as well as the other packages, but here the load via namespace point is different, the question is does that change anything? Ubuntuversion?
+ with Session Info the exact names and versions of the main programs are given, and they also provide a docker images. Instructions on how to set up required environments or how to use docker is missing. 
+used IDE is also mentioned. 
 - Rule 4: Version Control All Custom Scripts
-  - According to us, exactly the same scripts were used.
+  - The source of the tutorial is a script stored in a GitHub repository, so they used Version Control
 - Rule 5: Record all intermediate results, when possible in standardized formats
-  - How does this happen in our case?
+  - at the end "saveRDS(pbmc, file = "../data/pbmc3k_final.rds")" the seurat object is stored. But the object serves as a container with different slot for data and analysis, that makes it possible to see for example scaled and not scaled data without overwriting. 
 - Rule 6: For analyses that include randomness, note underlying random seeds
-  - A random seed is not actually evident in the tutorial
+  - for quiet a lot of functions, random.seeds are set, but newer mentioned directly. For the function JackStraw(pbmc, num.replicate = 100) randomness is mentioned but, repeated execution doesn not change the result. In the source code we found that also here a random.seed is set. 
 - Rule 7: Always store raw data behind plots
-  - The corresponding raw data is available in tabular format
+  - The corresponding data is stored
 - Rule 8: Generate hierarchical analysis output, allowing layers of increasing detail to be inspected
-  - Will be generated in the output folder?
+  - we found that the seuratObject, is a format, that allows to inspect different layers of the result. 
 - Rule 9: Connect textual statements to underlying results
   - The tutorial is commented out in detail and linked to the necessary sources
 - Rule 10: Provide public access to scripts, runs and results
@@ -314,22 +317,25 @@ raw 5277 features across 4616 samples within 1 assay
   - with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. 
 - because the target approach already tries to focus on genes that matter most, feature number is low compared to the tutorial. The step feature selection is may not needed. 
 - it seems that the dimensionality is higher
+- Assigning cell type identity to clusters not possible without having canonical markers
 
 
-focus on genes that matter most
+
+
 
 - **What code modifications were required?**
   - name from the read in data
   - lower number of min.features for cells beeing included in seurat Object 
   - You have to adapt some filters, because you analyze different number of features and samples
   - increase number of used dimenstion
+  - skip feature selection step
   - because high heterogenity is expected also resolution parameter is set to a higher number
   - change the variable name pbmc, because data is from different cell type. To make it more robust for different datasets a neutral name (scSEQ) is used. 
 
- - 
 - **Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?**
   - The results cannot be compared in the biological context because the raw data are completely different and, above all, the cells are completely different. Tumour cells are basically very heterogeneous and in the case of glioblastoma cells this applies even more extensively.
-  - The many black areas in the heat maps are not yet clear to me????
+ - because a panel was used, in the matrix also features (n=20) were present without beeing detected in a cell. 
+  - The many black areas in the heat maps are not yet clear to me???? low = "magenta", high = "yellow", mid = "black" 
   - In our data set, there are also apparently more principal components beforehand due to the heterogeneity of the cells, and the individual PCs are not so easily separable.
   - Whereby the "main" elbow again at 8 - 9 PCs
   - But if you compare the plots to the basic tutorial, there are similarities.

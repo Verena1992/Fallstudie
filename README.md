@@ -30,9 +30,10 @@ cd data
 #download data
 #The wget option -O specifies a file to which the documents is written, and here we use -, meaning it will written to standard output and piped to tar and the tar #flag -x enables extraction of archive files and -z decompresses, compressed archive files created by gzip
 
+#dataset for tutorial
 wget -c https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz -O - | tar -xz
-##for our new dataset, do we need the raw or the filtered??
-wget -c https://cf.10xgenomics.com/samples/cell exp/4.0.0/Targeted_SC3v3_Human_Glioblastoma_Neuroscience/Targeted_SC3v3_Human_Glioblastoma_Neuroscience_raw_feature_bc_matrix.tar.gz -O - | tar -xz
+##for our new dataset, we used need the filtered dataset
+#wget -c https://cf.10xgenomics.com/samples/cell exp/4.0.0/Targeted_SC3v3_Human_Glioblastoma_Neuroscience/Targeted_SC3v3_Human_Glioblastoma_Neuroscience_raw_feature_bc_matrix.tar.gz -O - | tar -xz
 wget -c https://cf.10xgenomics.com/samples/cell-exp/4.0.0/Targeted_SC3v3_Human_Glioblastoma_Neuroscience/Targeted_SC3v3_Human_Glioblastoma_Neuroscience_filtered_feature_bc_matrix.tar.gz -O - | tar -xz
 cd ..
 ```
@@ -47,7 +48,10 @@ cd ..
 
 ```bash
 conda activate seurat
-rstudio
+rstudio 
+#which rstudio --- /usr/bin/rstudio 
+#rstudio -version  --- 2021.09.1+372
+
 ```
 
 open seurat_tutorial.Rmd
@@ -55,7 +59,7 @@ open seurat_tutorial.Rmd
 Maybe you run in troubles, it could be helpful to delete the environment and create again like in step1
 
 ```bash
-conda env remove -n seurat
+conda env remove -n seurat --all
 ```
 ### Docker
 
