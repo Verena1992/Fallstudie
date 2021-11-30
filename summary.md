@@ -208,7 +208,7 @@ To save memory the numerous 0 are replaced by .(point)
 
  A barcode may mistakenly tag multiple cells (doublet) or may not tag any cells (empty droplet/well). \
  Barcodes with very few genes/number of molecules may not correspond to cells with good quality -- or quiescent \
- Barcodes with high counts my correspond to douplets -- or larger in size \
+ Barcodes with high counts may correspond to douplets -- or larger in size \
  Barcodes with high fraction of mitochondrial counts are cells whose cytoplasmic mRNA has leaked out throught a broken membran -- or involved in respiratory processes \
 Before analysing the single-cell gene expression data, cell with genes over 2,500 or less than 200 are excluded. Additionally if more than 5 % of this genes are mitochondrial genes than they are also excluded. Dimension of the matrix for further analysis = 13714 x 2638
   
@@ -219,19 +219,19 @@ Feature counts for each cell are divided by the total counts for that cell and m
 
 - **Identification of highly variable features (feature selection)**
 
-Many genes will not be informative for clustering, to reduce dimensionality of the datasets only highly variable genes are selected. From the 13714 genes the 2000 most varable genes are stored under @var.features
+Many genes will not be informative for clustering. To reduce dimensionality of the datasets only highly variable genes are selected. From the 13714 genes the 2000 most variable genes are stored under @var.features
 
 - **Scaling the data**
 
-To improve comparison between genes, gene counts are scaled. This scalinag has the effect that all genes are weighted equally (with this step biological information could be lost)
+To improve comparison between genes, gene counts are scaled. This scaling has the effect that all genes are weighted equally. With this step biological information could be lost.
 
 - **Perform linear dimensional reduction**
 
-Biological information in expression data can be described by far fewer dimensions than the number of genes. For that a PCA is performed with the 2000 variable features 
+Biological information in expression data can be described by far fewer dimensions than the number of genes. For that a PCA is performed with the 2000 variable features. 
 
 - **Determine the ‘dimensionality’ of the dataset**
 
-With PCA it is possible to summarize a dataset. How many pc are neede to have enough information can be derminated by "elbow" heuristics, or the permutation-test-based jackstraw method.
+With PCA it is possible to summarize a dataset, as well as to check how many PCs are needed to obtain enough information. This can be determined by "elbow" heuristics, or the permutation-test-based jackstraw method.
 
 - **Cluster the cells**
 
@@ -241,48 +241,44 @@ Euclidean distances form cells on the PC-reduced expression space are calculated
 Based on this distance, each cell (=node) is connected to 20 other cells (with the lowest distanceses). This results for 2638 cells to 52760 connections (pbmc@graphs[["RNA_nn"]]@x). 
 
 *Shared Nearest-neighbor graph (snn)* \
-Additionaly, the neighborhood overlap (Jaccard index) between every cell and its k.param nearest neighbors is calculated. 
+Additionaly, the neighborhood overlap (Jaccard index) between every cell and its k.param nearest neighbours is calculated. 
   
-Then with the SNN graph, the modularity function is optimized to determine the clusters. For that the Louvain algorithm is used. Graphs with a high modularity score will have many connections within a community but only few pointing outwards to other communities. The Louvain algorithm detects communities as groups of cells that have more links between them than expected from the number of links the cells habe in total, or in other words: the fraction of edges that run within the community is compared to the fraction we would expect to find if we "randomly rewired" the network. 
-  
+Then with the SNN graph, the modularity function is optimized to determine the clusters. For that the Louvain algorithm is used. Graphs with a high modularity score will have many connections within a community but only few pointing outwards to other communities. The Louvain algorithm detects communities as groups of cells that have more links between them than expected from the number of links the cells have in total, or in other words: The fraction of edges that run within the community is compared to the fraction we would expect to find if we "randomly rewired" the network. 
   
   
 - **Run non-linear dimensional reduction (UMAP/tSNE)**
 
-cells within the same cluster should group together 
+Cells within the same cluster should group together. 
 
-in the tutorial not the python package umap is used, instead the r package uwot is used. Installation of python package is not needed.
+The tutorial do not use the python package umap, instead the r package uwot is used. Installation of python package is not needed.
 
 > Warning: The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric /
 > To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
 
 - **Finding differentially expressed features (cluster biomarkers)**
 
-To detected genes that are expressed much more/less in one cluster compared to the other cells.
+To detect genes that are expressed much more or less in one cluster compared to the other cells.
 
-ident.1 = cluster to compare (if ident.2 is not defined, all other cells are used for comparison)
+ident.1 = cluster to compare (if ident.2 is not defined, all other cells are used for comparison
 idnet.2 = A second identity class for comparison. ident.1 vs ident.2 
 
-with the function FindAllMarkers(), markers for all cluster are determined. 
+With the function FindAllMarkers(), markers for all cluster are determined. 
 
-if limma is not installed in environment, it is installed automatically with:
+If limma is not installed in environment, it is installed automatically with:
 
 > install.packages('BiocManager')
 > BiocManager::install('limma')
 
-to speed up this process there are 3 options:
-1. set the min.pct argument to a higher value than the default of 0.1 (excludes genes that are very infrequnetly expressed)
-2. set the logfc.threshold argument to a higher value than the default of 0.25 (excludes weaker signals)
-3. set the max.cells.per. ident argument to a number, default is Inf. (Down sample each cluster to a max number of cells)
+To speed up this process there are 3 options:
+1. Set the min.pct argument to a higher value than the default of 0.1 (excludes genes that are very infrequently expressed)
+2. Set the logfc.threshold argument to a higher value than the default of 0.25 (excludes weaker signals)
+3. Set the max.cells.per. ident argument to a number, default is Inf. (Down sample each cluster to a max number of cells)
 
-
-to calculate the impact a marker gene has on the classification the ROC test can be used.
-
-
+To calculate the impact of a marker gene to the classification the ROC test can be used.
 
 - **Assigning cell type identity to clusters**
 
-markers are used to define the cell type of the clusters. 
+Markers are used to define the cell type of the clusters. 
 
 ## Expanding the work
 Find a publicly available data set and apply the same workflow. You may need to adapt some of the code to make it work.
