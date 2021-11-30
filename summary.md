@@ -328,7 +328,15 @@ focus on genes that matter most
 
  - 
 - **Are the results comparable to the results of the original tutorial, or do they deviate in some unexpected ways?**
-- **Discuss all the results and interpret them.**
+  - The results cannot be compared in the biological context because the raw data are completely different and, above all, the cells are completely different. Tumour cells are basically very heterogeneous and in the case of glioblastoma cells this applies even more extensively.
+  - The many black areas in the heat maps are not yet clear to me????
+  - In our data set, there are also apparently more principal components beforehand due to the heterogeneity of the cells, and the individual PCs are not so easily separable.
+  - Whereby the "main" elbow again at 8 - 9 PCs
+  - But if you compare the plots to the basic tutorial, there are similarities.
+  - The QC violin plots with the mitochondrial RNA look the most different.
 
+- **Discuss all the results and interpret them.**
+  - Basically, it is not so easy to interpret the available data because we have not done it to this extent before. Above all, there is the question of clinical relevance.
+  - At first glance, the up- and down-regulated genes in the specific cell variants can be viewed.
 
 
