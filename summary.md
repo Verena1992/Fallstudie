@@ -333,6 +333,18 @@ raw 5277 features across 4616 samples within 1 assay
     -  Normalized data is used. Standardized Variance is plotted against average expression. We have a variable count of 1166. The 10 highly variable genes are: COL4A1, APOD, MT1H, PLA2G2A, CLDN5, COL4A2, MMP9, EGFL7, CXCL10, ESAM.
   - Perform linear dimensional reduction
     - Some ways are provided to visualize cells and features that define the PCA. When PC_1 is plotted against PC_2, at first glance there 3 main clusters. Afterwards the PCs/Dimensions were visualized with heatmaps. You can see the different gene expressions, magenta = low gene expression , black = no relevant expression, yellow = high gene expression. Compared to the tutorial results you can obsere, our dataset has also in PC13 to PC15 a variation between high and low gene expressesion, whereas in the tutorial there only low gene expression in these PCs. Which in turn confirms that in our case we are dealing with a very heterogeneous data set.
+  - JackStraw and Elbow
+    - Significant PCs will show a strong enrichment of features with low p-values. In our case it appears that there is no sharp drop-off in significane after the first 20 PCs.
+    - In the elbowplot, we can observe an elbow around PC 12-13 and 20-21??
+   - Run non-linear dimensional reduction (UMAP) - Place similar cells together in low-dimensional space
+     - 
+  - Finding differentially expressed features (cluster biomarkers)
+    - It identifies positive and negative markers of a single cluster
+    - Visualize marker expression via ViolinPlots, we used PLP1 and MAG, the expression level is plotted against the 13 PCs. What is zero?
+    - Afterwards we plot the raw counts for OLR1 und PLAUR
+    - Then the featureplot for the top 10 was used
+    - An expression heatmap for given cells and features. The top 20 markers or all markers if less than for each cluster
+  - Assigning cell type identity to cluster fortunately in the case of this dataset, we can use canonical markers to easily math the unbiased clustering known cell types.
   - At first glance, the up- and down-regulated genes in the specific cell variants can be viewed.
 
 
