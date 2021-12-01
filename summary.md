@@ -294,7 +294,7 @@ raw 5277 features across 4616 samples within 1 assay
 
 - **What challenges did you face when applying the workflow to a new data set?**
 
-  - At the beginnig it is useful to obtain information of the examined biological samples and check the raw data preparation (like single cell sequencing or bulk sequencing)
+  - At the beginning it is useful to obtain information of the examined biological samples and check the raw data preparation (like single cell sequencing or bulk sequencing)
   - Make sure that you use the correct dataset (raw data or filtered dataset)
     The cellranger pipeline outputs two types of feature-barcode matrices:
     Unfiltered feature-barcode matrix and Filtered feature-barcode matrix.
@@ -328,23 +328,26 @@ raw 5277 features across 4616 samples within 1 assay
 - **Discuss all the results and interpret them.**
   - Basically, it is quite tricky to interpret the available data because more biological background would be helpful.
   - QC and selecting cells for further analysis:
-    - As mentioned in the section above, with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. The distribution of counts and features can be seen in the violin plots. The feature plot shows an even distibution. A clustered occurrence is visible from 200 to 400. The count plot shows a huge clustered occurence at the bottom. In the FeatureScatter feature-feature relationships are visualized. The left plot has no relevance for us because percent.mt is 0. In the right plot, nFeature_RNA is plotted against nCount_RNA. In our data, a wider scatter and steeper increase can be observed compared to the tutorial.
+    - As mentioned in the section above, with the targeted approach no genes starting with 'MT-' are present in the dataset. So mitochondiral contamination as signal of low-quality cells is not available. The distribution of counts and features can be seen in the violin plots. The nFeature_RNA plot shows an even distibution. A clustered occurrence is visible from 200 to 400. The nCount_RNA plot shows a huge clustered occurence at the bottom. In the FeatureScatter feature-feature relationships are visualized. The left plot has no relevance for us because percent.mt is 0 - not available. In the right plot, nFeature_RNA is plotted against nCount_RNA. In our data, a wider scatter and steeper increase can be observed compared to the tutorial. For this reason the value of 0.88 is slightly lower compared to the original tutorial.
   - Identification of highly variable features (feature selection) - 10 most highly variable genes were identified:
-    -  Normalized data is used. Standardized Variance is plotted against average expression. We have a variable count of 1166. The 10 highly variable genes are: COL4A1, APOD, MT1H, PLA2G2A, CLDN5, COL4A2, MMP9, EGFL7, CXCL10, ESAM.
+    -  Normalized data is used. Standardized variance is plotted against average expression. We used the default settings of 2,000 features per dataset. Therefore we have a variable count of 1166 and no non-variable count.
+    -  The 10 highly variable genes are: COL4A1, APOD, MT1H, PLA2G2A, CLDN5, COL4A2, MMP9, EGFL7, CXCL10, ESAM.
   - Perform linear dimensional reduction
-    - Some ways are provided to visualize cells and features that define the PCA. When PC_1 is plotted against PC_2, at first glance there 3 main clusters. Afterwards the PCs/Dimensions were visualized with heatmaps. You can see the different gene expressions, magenta = low gene expression , black = no relevant expression, yellow = high gene expression. Compared to the tutorial results you can obsere, our dataset has also in PC13 to PC15 a variation between high and low gene expressesion, whereas in the tutorial there only low gene expression in these PCs. Which in turn confirms that in our case we are dealing with a very heterogeneous data set.
-  - JackStraw and Elbow
-    - Significant PCs will show a strong enrichment of features with low p-values. In our case it appears that there is no sharp drop-off in significane after the first 20 PCs.
-    - In the elbowplot, we can observe an elbow around PC 12-13 and 20-21??
+    - Some ways are provided to visualize cells and features that define the PCA. When PC_1 is plotted against PC_2, at first glance there are 3 main clusters, which are not clearly separable. The first two PCs explain the largest area of the total variance.
+    - Afterwards the PCs/Dimensions were visualized with heatmaps. You can see the different gene expression levels; magenta = low gene expression , black = normal gene expression, yellow = high gene expression. Compared to the tutorial results you can obsere, our dataset has also in PC13 to PC15 a variation between high and low gene expressesion, whereas in the tutorial there only low gene expressions in the last 3 visualized PCs. Which in turn confirms that in our case we are dealing with a very heterogeneous data set.
+  - JackStrawplot and Elbow heuristics
+    - Significant PCs will show a strong enrichment of features with low p-values, that is strongly skewed to the left compared to the null distribution (dashed line). The p-value for each PC is based on a proportion test comparing the number of genes with a p-value below a patricular threshold, compared with the proportion of genes expected under a uniform distribution of p-values.
+    - Elbowplot - We can observe the "main" elbow around PC 8-9, but our example isn't that clear. We can also observe smaller steps for PC 12-13 and PC 20-21.
    - Run non-linear dimensional reduction (UMAP) - Place similar cells together in low-dimensional space
-     - 
+     - Cells within the graph-based cluster determined above should co-localize on the dimension reduction plots. 14 cell clusters are visible.
   - Finding differentially expressed features (cluster biomarkers)
     - It identifies positive and negative markers of a single cluster
-    - Visualize marker expression via ViolinPlots, we used PLP1 and MAG, the expression level is plotted against the 13 PCs. What is zero?
+    - Visualize marker expression via ViolinPlots, we used PLP1 and MAG, the expression level is plotted against the 14 PCs.
     - Afterwards we plot the raw counts for OLR1 und PLAUR
-    - Then the featureplot for the top 10 was used
-    - An expression heatmap for given cells and features. The top 20 markers or all markers if less than for each cluster
+    - Then the featureplot for the top 10 is used
+    - An expression heatmap for given cells and features is created. The top 20 markers or all markers are used if less than for each cluster
   - Assigning cell type identity to cluster fortunately in the case of this dataset, we can use canonical markers to easily math the unbiased clustering known cell types.
-  - At first glance, the up- and down-regulated genes in the specific cell variants can be viewed.
+    - We are not able to determine the canonical markers
 
+Summarized, it can be said that interpreting the data and assigning the corresponding clusters to the associated markers turned out to be more difficult than expected. In other words, our data deviates greatly from the dataset of the original tutorial.
 
