@@ -267,9 +267,7 @@ FeaturePlot(scSEQ, features = c("PLP1", "OLR1", "LPL", "CXCL8", "PLA2G2A", "SERP
 scSEQ.markers %>% group_by(cluster) %>% top_n(n = 10, wt = avg_log2FC) -> top10
 DoHeatmap(scSEQ, features = top10$gene) + NoLegend()
 ```
-***
-# Assigning cell type identity to clusters
-Fortunately in the case of this dataset, we can use canonical markers to easily match the unbiased clustering to known cell types:
+
 
 ```{r save.img, include=FALSE}
 library(ggplot2)
