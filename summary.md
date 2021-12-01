@@ -1,7 +1,7 @@
 # Summary
-Gebhart Verena, 118787
-Hennebichler Bernhard, 116252
-You can find our github repository here [Fallstudie](https://github.com/Verena1992/Fallstudie)
+- Gebhart Verena, 118787
+- Hennebichler Bernhard, 116252
+- You can find our github repository here [Fallstudie](https://github.com/Verena1992/Fallstudie)
 
 ## 1. Preparation
 As a preparation for the data analysis workflow, thoroughly read the given manuscripts. 
