@@ -1,4 +1,6 @@
 # Summary
+Gebhart Verena, 118787
+Hennebichler Bernhard, 116252
 
 ## 1. Preparation
 As a preparation for the data analysis workflow, thoroughly read the given manuscripts. 
@@ -349,5 +351,5 @@ raw 5277 features across 4616 samples within 1 assay
   - Assigning cell type identity to cluster fortunately in the case of this dataset, we can use canonical markers to easily math the unbiased clustering known cell types.
     - We are not able to determine the canonical markers
 
-Summarized, it can be said that interpreting the data and assigning the corresponding clusters to the associated markers turned out to be more difficult than expected. In other words, our data deviates greatly from the dataset of the original tutorial.
+Summarized, it can be said interpreting the data and assigning the corresponding clusters to the associated markers turned out to be more difficult than expected. In other words, our data deviates from the dataset of the original tutorial.
 
